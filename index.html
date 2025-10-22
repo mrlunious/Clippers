@@ -3,427 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaradite Novac Danas - TU VERSITY</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>University | Zaradite Novac Danas</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
         }
-        
+
         body {
-            background-color: #0a0f0a;
-            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
             overflow-x: hidden;
-            line-height: 1.6;
         }
-        
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        nav {
+            background: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-buttons button {
+            padding: 10px 25px;
+            border: 2px solid #1e3a8a;
+            background: transparent;
+            color: #1e3a8a;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-buttons button:first-child {
+            background: #1e3a8a;
+            color: white;
+        }
+
+        .nav-buttons button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
             position: relative;
-            z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             z-index: 1;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .site-name {
+            font-size: 14px;
+            letter-spacing: 8px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            font-size: 72px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .money-highlight {
+            position: relative;
+            color: #1e3a8a;
+        }
+
+        .money-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: rgba(134, 239, 172, 0.5);
+            z-index: -1;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #1e3a8a;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .video-container {
+            background: white;
+            padding: 5px;
+            border: 3px solid black;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 50%, #f59e0b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
         }
-        
-        .background {
+
+        .video-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://cdn.discordapp.com/attachments/1429201672579715185/1430593225365655633/green-mountain-theme-hk3.jpg?ex=68fa5744&is=68f905c4&hm=1e294e96f30400c16bed95533b3af11b5b0f3b5602d03c0b0d9004364e78582b&') no-repeat center center;
+            background: 
+                linear-gradient(to bottom, 
+                    rgba(254, 243, 199, 0.9) 0%,
+                    rgba(252, 211, 77, 0.8) 30%,
+                    rgba(245, 158, 11, 0.7) 60%,
+                    rgba(20, 20, 40, 0.95) 100%
+                ),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0 400 L200 380 L400 390 L600 370 L800 385 L1000 375 L1200 380 L1200 600 L0 600 Z" fill="%23141428" opacity="0.8"/><path d="M0 420 L150 410 L300 425 L500 405 L700 420 L900 410 L1200 415 L1200 600 L0 600 Z" fill="%230a0a14" opacity="0.9"/></svg>');
             background-size: cover;
-            z-index: 1;
+            background-position: center;
         }
-        
-        .background-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 15, 10, 0.85);
-            z-index: 2;
-        }
-        
-        .logo {
+
+        .logo-center {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            background: url('https://cdn.discordapp.com/attachments/1429201672579715185/1430593225030238350/1761149899789.jpg?ex=68fa5743&is=68f905c3&hm=47fa878a23cf5bcefd37e19d083e8fb9e869d6d1c514fc9093e941498d538a50&') no-repeat center center;
-            background-size: contain;
-            z-index: 3;
-            opacity: 0.15;
+            z-index: 10;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 50%, #dc2626 100%);
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 0 60px rgba(220, 38, 38, 0.6),
+                inset 0 0 60px rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .logo-center img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
             filter: brightness(1.2);
         }
-        
-        header {
+
+        .logo-text-bottom {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 5;
+            letter-spacing: 2px;
+        }
+
+        .cta-section {
             text-align: center;
-            padding: 40px 0 20px;
-            position: relative;
-            z-index: 10;
+            margin-top: 30px;
         }
-        
-        h1 {
-            font-size: 3.5rem;
+
+        .enroll-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
             margin-bottom: 20px;
-            color: #2ecc71;
-            text-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
-            font-weight: 800;
-            letter-spacing: -1px;
         }
-        
-        .subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #ecf0f1;
+
+        .enroll-btn:hover {
+            background: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        .students-enrolled {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
             font-weight: 600;
         }
-        
-        .tagline {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-            color: #bdc3c7;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+
+        .student-avatars {
+            display: flex;
+            margin-right: 5px;
         }
-        
-        .content {
-            max-width: 800px;
+
+        .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+
+        .avatar:first-child {
+            margin-left: 0;
+        }
+
+        .help-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .help-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Enrollment Page Styles */
+        .enrollment-page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        .enrollment-page.active {
+            display: block;
+        }
+
+        .enrollment-container {
+            max-width: 600px;
             margin: 0 auto;
             text-align: center;
-            padding: 30px 0;
-            position: relative;
-            z-index: 10;
+            padding: 40px 20px;
         }
-        
-        .highlight-box {
-            background: rgba(23, 32, 23, 0.7);
-            border: 1px solid rgba(46, 204, 113, 0.3);
-            border-radius: 12px;
-            padding: 30px;
-            margin: 40px 0;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
+
+        .enrollment-title {
+            font-size: 48px;
+            color: white;
+            margin-bottom: 40px;
+            font-weight: bold;
         }
-        
-        .highlight-box h2 {
-            font-size: 1.8rem;
-            color: #2ecc71;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        .highlight-box p {
-            font-size: 1.2rem;
-            color: #ecf0f1;
-        }
-        
-        .buttons {
+
+        .button-group {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 50px 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 40px;
         }
-        
-        .btn {
-            padding: 18px 45px;
-            font-size: 1.3rem;
-            font-weight: 700;
+
+        .discord-btn {
+            background: #10b981;
+            color: white;
             border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            min-width: 200px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            color: #fff;
-        }
-        
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #27ae60, #219653);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.4);
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: center;
-            margin: 40px 0;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .stat-item {
-            background: rgba(23, 32, 23, 0.7);
-            padding: 25px;
-            border-radius: 10px;
-            min-width: 220px;
-            border: 1px solid rgba(46, 204, 113, 0.2);
-            backdrop-filter: blur(5px);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            color: #2ecc71;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-        
-        .stat-text {
-            font-size: 1.1rem;
-            color: #bdc3c7;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding: 30px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #95a5a6;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .footer-link {
-            color: #2ecc71;
-            text-decoration: none;
+            padding: 20px 40px;
+            font-size: 20px;
             font-weight: 600;
-            transition: color 0.3s;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            text-decoration: none;
+            display: block;
         }
-        
-        .footer-link:hover {
-            color: #27ae60;
-            text-decoration: underline;
+
+        .discord-btn:hover {
+            background: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
         }
-        
-        .copyright {
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-        
+
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            .main-title {
+                font-size: 48px;
             }
             
-            .subtitle {
-                font-size: 1.4rem;
+            nav {
+                padding: 15px 20px;
             }
             
-            .tagline {
-                font-size: 1.1rem;
+            .nav-links {
+                display: none;
             }
-            
-            .buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .logo {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .stats {
-                gap: 20px;
-            }
-            
-            .stat-item {
-                min-width: 160px;
-                padding: 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .highlight-box {
-                padding: 20px;
-            }
-            
-            .highlight-box h2 {
-                font-size: 1.4rem;
-            }
-            
-            .logo {
-                width: 250px;
-                height: 250px;
-            }
-        }
-        
-        /* Animation for elements */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate-fade-in {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .delay-3 {
-            animation-delay: 0.6s;
         }
     </style>
 </head>
 <body>
-    <div class="background-container">
-        <div class="background"></div>
-        <div class="background-overlay"></div>
-        <div class="logo"></div>
-    </div>
-    
-    <div class="container">
-        <header>
-            <h1 class="animate-fade-in">ZARADITE NOVAC DANAS</h1>
-            <p class="subtitle animate-fade-in delay-1">Moderno obrazovanje je previše sporo - četiri godine je predugo.</p>
-            <p class="tagline animate-fade-in delay-1">Naučite PRAVE veštine DANAS koje će vam doneti novac SUTRA.</p>
-        </header>
-        
-        <div class="content">
-            <div class="highlight-box animate-fade-in delay-2">
-                <h2>Transformišite svoju budućnost</h2>
-                <p>Pridružite se više od 155.000 studenata koji su već započeli svoje putovanje ka finansijskoj slobodi.</p>
+    <!-- Main Landing Page -->
+    <div id="mainPage">
+        <nav>
+            <div class="logo">
+                <img src="https://i.ibb.co/9gZ8ZYj/clippers-logo.png" alt="Clippers Logo">
             </div>
-            
-            <div class="buttons">
-                <a href="https://discord.gg/9QVkAmrya4" class="btn btn-primary animate-fade-in delay-2">Clipper</a>
-                <a href="https://discord.gg/9QVkAmrya4" class="btn btn-primary animate-fade-in delay-3">Creator</a>
+            <ul class="nav-links">
+                <li><a href="#">Početna</a></li>
+                <li><a href="#">Profesije</a></li>
+                <li><a href="#">Recenzije</a></li>
+                <li><a href="#">Informacije</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Kampusi</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button>Prijavite se</button>
+                <button>Ulogujte se</button>
             </div>
-            
-            <div class="stats">
-                <div class="stat-item animate-fade-in delay-2">
-                    <div class="stat-number">155K+</div>
-                    <div class="stat-text">Studenata se upisalo</div>
+        </nav>
+
+        <div class="container">
+            <div class="header-text">
+                <div class="site-name">CLIPPERS.COM</div>
+                <h1 class="main-title">
+                    ZARADITE <span class="money-highlight">NOVAC</span> DANAS
+                </h1>
+            </div>
+
+            <p class="subtitle">Počnite sa Klipovanjem od sada i zarađujte!</p>
+
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <div class="video-bg"></div>
+                    <div class="logo-center">
+                        <img src="https://cdn.discordapp.com/attachments/1429201672579715185/1430593225030238350/1761149899789.jpg" alt="Logo" onerror="this.style.display='none'">
+                    </div>
+                    <div class="logo-text-bottom">TO CLIPPERS.COM</div>
                 </div>
-                <div class="stat-item animate-fade-in delay-3">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-text">Dostupnost</div>
-                </div>
-                <div class="stat-item animate-fade-in delay-2">
-                    <div class="stat-number">99%</div>
-                    <div class="stat-text">Zadovoljnih korisnika</div>
+            </div>
+
+            <div class="cta-section">
+                <button class="enroll-btn" onclick="showEnrollmentPage()">Upišite se danas</button>
+                <div class="students-enrolled">
+                    <div class="student-avatars">
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                    </div>
+                    <span>1000+ Studenata upisano</span>
                 </div>
             </div>
         </div>
-        
-        <div class="footer">
-            <div class="footer-links">
-                <a href="#" class="footer-link">TU VERSITY.COM</a>
-                <a href="#" class="footer-link">TO UNIVERSITY.COM</a>
-                <a href="#" class="footer-link">EVERBITY.COM</a>
-            </div>
-            <p class="copyright">© 2023 Sva prava zadržana</p>
-        </div>
+
+        <button class="help-button">?</button>
     </div>
-    
+
+    <!-- Enrollment Page -->
+    <div id="enrollmentPage" class="enrollment-page">
+        <nav>
+            <div class="logo">
+                <img src="https://i.ibb.co/9gZ8ZYj/clippers-logo.png" alt="Clippers Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showMainPage()">Početna</a></li>
+                <li><a href="#">Profesije</a></li>
+                <li><a href="#">Recenzije</a></li>
+                <li><a href="#">Informacije</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Kampusi</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button>Prijavite se</button>
+                <button>Ulogujte se</button>
+            </div>
+        </nav>
+
+        <div class="enrollment-container">
+            <h2 class="enrollment-title">Izaberite svoju ulogu</h2>
+            <div class="button-group">
+                <a href="https://discord.gg/9QVkAmrya4" class="discord-btn" target="_blank">Clipper</a>
+                <a href="https://discord.gg/9QVkAmrya4" class="discord-btn" target="_blank">Creator</a>
+            </div>
+        </div>
+
+        <button class="help-button">?</button>
+    </div>
+
     <script>
-        // Add scroll animation
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to buttons
-            const buttons = document.querySelectorAll('.btn');
-            
-            buttons.forEach(button => {
-                button.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
-                
-                button.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // Add scroll animation for elements
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe elements for scroll animation
-            const animatedElements = document.querySelectorAll('.animate-fade-in');
-            animatedElements.forEach(el => {
-                el.style.opacity = 0;
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-        });
+        function showEnrollmentPage() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('enrollmentPage').classList.add('active');
+        }
+
+        function showMainPage() {
+            document.getElementById('enrollmentPage').classList.remove('active');
+            document.getElementById('mainPage').style.display = 'block';
+        }
     </script>
 </body>
 </html>
